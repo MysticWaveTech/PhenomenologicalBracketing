@@ -24,7 +24,53 @@
     <section id="community">
         <h2>Join the Community</h2>
         <p>Share your experiences and findings with others who are exploring the boundaries of truth through phenomenological bracketing. Connect with a community that is uncovering new dimensions of reality.</p>
-        <button onclick="window.location.href='resources.html'">Join Now</button>
+        
+        
+   
+    
+    <h1>Forum</h1>
+    
+    <!-- Google Form Embed -->
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScgLmCswIpCUSmPW7fZ8_HcTNGTvT2HBT77tyUTPYDDW9pZCA/viewform" width="100%" height="500"></iframe>
+    
+    <!-- Container for displaying Google Sheets data -->
+    <div id="posts"></div>
+    
+    <div>
+        
+        <p>
+            
+            Forum link: <a href="https://docs.google.com/spreadsheets/u/0/d/1Ov8zPvycBAPRw2UsUc7QYJSOgodmwSPMXIs2gPF9mtw/htmlview#">https://docs.google.com/spreadsheets/u/0/d/1Ov8zPvycBAPRw2UsUc7QYJSOgodmwSPMXIs2gPF9mtw/htmlview#</a>
+            
+        </p>
+        
+    </div>
+    
+    <script>
+        const postsContainer = document.getElementById('posts');
+        const SHEET_ID = '1Ov8zPvycBAPRw2UsUc7QYJSOgodmwSPMXIs2gPF9mtw'; // Google Sheet ID
+        const API_KEY = 'AIzaSyBuBKo_UdG3Rz25kldRPXyLlIvbRfUVSP8'; // Your API Key
+        const RANGE = 'Form Responces 2!a:z'; // Adjust the range as needed
+
+        // Fetch data from Google Sheets
+        fetch(`https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${RANGE}?key=${API_KEY}`)
+            .then(response => response.json())
+            .then(data => {
+                const rows = data.values || [];
+                rows.forEach(row => {
+                    if (row[0]) {
+                        const postElement = document.createElement('div');
+                        postElement.classList.add('post');
+                        postElement.textContent = row[0];
+                        postsContainer.appendChild(postElement);
+                    }
+                });
+            })
+            .catch(error => console.error('Error:', error));
+    </script>
+
+        
+        
     </section>
 
     <footer>
